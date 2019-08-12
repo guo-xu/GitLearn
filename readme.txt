@@ -25,4 +25,5 @@ git diff 比较的是工作区文件与暂存区文件的区别， git diff --ca
     切换分支：git checkout <name>
     创建并切换分支：git checkout -b <name>
     合并某分支到当前分支：git merge <name>
+查看分支的合并情况： git log --graph --pretty=oneline --abbrev-commit
     
