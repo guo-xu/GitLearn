@@ -8,6 +8,7 @@ Git is free software.
     可理解为，需要提交的文件修改都放到暂存区，然后，一次性提交暂存区的所有修改。
 3、git status可以随时显示工作区的状态。
 4、如果 git status 告诉你有文件被修改过，用git diff可以查看修改内容。
+git diff 比较的是工作区文件与暂存区文件的区别， git diff --cached比较的是暂存区文件与仓库分支里的区别。
 5、HEAD指向的版本就是当前版本，Git允许我们在版本的历史之间穿梭，使用命令 git reset --hard commit_id。
 穿梭前，用git log查看提交历史，以便确认要回退到哪个版本。
 要重返未来，用git reflog查看命令历史，以便确认要回到未来的哪个版本。
