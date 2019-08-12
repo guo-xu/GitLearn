@@ -1,6 +1,7 @@
 Git is a version control system.
 Git is free software.
 Git tracks changes of files.
+Creating a new branch is quick.
 
 1、初始化一个Git仓库，使用 git init 命令。
 2、添加文件到Git仓库，分两步：
@@ -18,3 +19,6 @@ git diff 比较的是工作区文件与暂存区文件的区别， git diff --ca
 7、git rm 用于删除一个文件。如果一个文件已经被提交到版本库，那么你永远不用担心误删。
 但是要小心，只能恢复到文件的最新版本，会丢失最近一次提交后你修改的内容。
 8、本地提交后，只要有必要，可以使用命令 git push origin master 推送最新修改内容到git服务器上。
+9、创建分支： git branch -b dev，git checkout命令加上 -b 参数，表示创建并切换，相当于以下两条命令：
+    git branch dev
+    git checkout dev
