@@ -17,3 +17,4 @@ git diff 比较的是工作区文件与暂存区文件的区别， git diff --ca
     （丢弃已提交到暂存区的修改）如果已经执行了git add命令，但是还没有执行git commit，想还原。可以先使用git reset HEAD file命令，将该文件add的内容撤销回去，然后再执行 git checkout -- file命令。
 7、git rm 用于删除一个文件。如果一个文件已经被提交到版本库，那么你永远不用担心误删。
 但是要小心，只能恢复到文件的最新版本，会丢失最近一次提交后你修改的内容。
+8、本地提交后，只要有必要，可以使用命令 git push origin master 推送最新修改内容到git服务器上。
