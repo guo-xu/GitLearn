@@ -1,7 +1,7 @@
 Git is a version control system.
 Git is free software.
 Git tracks changes of files.
-Creating a new branch is quick.
+Creating a new branch is quick & simple.
 
 1、初始化一个Git仓库，使用 git init 命令。
 2、添加文件到Git仓库，分两步：
