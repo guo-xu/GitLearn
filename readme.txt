@@ -2,8 +2,6 @@ Git is a version control system.
 Git is free software.
 Git tracks changes of files.
 Creating a new branch is quick and simple.
-dev -- hello
-issue-101
 
 1、初始化一个Git仓库，使用 git init 命令。
 2、添加文件到Git仓库，分两步：
@@ -28,4 +26,5 @@ git diff 比较的是工作区文件与暂存区文件的区别， git diff --ca
     创建并切换分支：git checkout -b <name>
     合并某分支到当前分支：git merge <name>
 查看分支的合并情况： git log --graph --pretty=oneline --abbrev-commit
+10、当手头工作没有完成时，先把工作现场git stash一下，然后去修复bug，修复后，再git stash pop，回到工作现场。
     
