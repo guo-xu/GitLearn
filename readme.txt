@@ -14,3 +14,4 @@ git diff 比较的是工作区文件与暂存区文件的区别， git diff --ca
 5、HEAD指向的版本就是当前版本，Git允许我们在版本的历史之间穿梭，使用命令 git reset --hard commit_id。
 穿梭前，用git log查看提交历史，以便确认要回退到哪个版本。
 要重返未来，用git reflog查看命令历史，以便确认要回到未来的哪个版本。
+6、git checkout -- file，在当前文件还没有执行 git add 命令前，使用该命令可以还原当前文件做的修改
