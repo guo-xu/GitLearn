@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>防抖</title>
+    <style>
+        .container{
+            width: 100%;
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+            color: #fff;
+            background-color: #444;
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!--
+        防抖的原理就是：你尽管触发事件，但是我一定在事件触发n秒后才执行，如果你在一个事件触发的n秒内又触发了这个事件，
+        那我就以新的事件的时间为准，n秒后才执行。总之，就是要等你触发完事件 n 秒内不在触发事件，我才执行。
+
+    -->
+    <div class="container" id="noDebounce"></div>
+    <div class="container" id="first"></div>
+    <div class="container" id="second"></div>
+    <div class="container" id="third"></div>
+    <div class="container" id="forth"></div>
+
+    <script>
+        /* 无防抖 */
+        var count = 1;
+        var container = document.getElementById('noDebounce');
+        function getUserAction(e){
+            console.log("无防抖的this：" + this); // this指向HTMLDOM对象
+            console.log("无防抖的e：" + e); // e是 MouseEvent对象
+            container.innerHTML = "无防抖：" + count++;
+        }
+        container.onmousemove = getUserAction;
+        /* 第一版 */
+        var firstCount = 1;
+        var firstDom = document.getElementById('first');
+        function getUserActionFirst(e){
+            console.log("第一版的this：" + this); // this指向window对象
+            console.log("第一版的e：" + e); // e是undefined
+            firstDom.innerHTML = "防抖第一版：" + firstCount++;
+        }
+        function firstDebounce(func, wait){
+            var timeout;
+            return function(){
+                clearTimeout(timeout);
+                timeout = setTimeout(func, wait);
+            }
+        }
+        firstDom.onmousemove = firstDebounce(getUserActionFirst, 1000);
+
+        /*
+            第一版问题： getUserAction方法里，this的值指向window对象，
+            为了修正this的指向，应用apply方法，推出第二版。
+        */
+        /* 第二版 */
+        var secondCount = 1;
+        var secondDom = document.getElementById('second');
+        function getUserActionSecond(e){
+            console.log("第二版的this：" + this); // this指向HTMLDOM对象
+            console.log("第二版的e：" + e);// e是undefined
+            secondDom.innerHTML = "防抖第二版：" + secondCount++;
+        }
+        function secondDebounce(func, wait){
+            var timeout;
+            return function(){
+                var context = this;
+                clearTimeout(timeout);
+                timeout = setTimeout(function(){
+                    func.apply(context)
+                }, wait)
+            }
+        }
+        secondDom.onmousemove = secondDebounce(getUserActionSecond, 1000);
+        /*
+            第一版和第二版问题：JavaScript 在事件处理函数中会提供事件对象 event，
+            在无防抖版本中，e的值就是正确的 MouseEvent 对象，但是在第一二版中，e是undefined,
+            为了修正 e 的值，推出第三版
+        */
+        /*第三版*/
+        var thirdCount = 1;
+        var thirdDom = document.getElementById('third');
+        function getUserActionThird(e){
+            console.log("第三版的this：" + this); // this指向HTMLDOM对象
+            console.log("第三版的e：" + e);//e是 MouseEvent对象
+            thirdDom.innerHTML = "防抖第三版：" + thirdCount++;
+        }
+        function thirdDebounce(func, wait){
+            var timeout;
+            return function(){
+                var context = this;
+                var args = arguments;
+                clearTimeout(timeout);
+                timeout = setTimeout(function(){
+                    func.apply(context, args)
+                }, wait)
+            }
+        }
+        thirdDom.onmousemove = thirdDebounce(getUserActionThird, 1000);
+        /*
+            此时，代码已经很完善了，但是为了让这个函数更加完善，考虑一个新需求。
+            我不希望非要等到事件停止触发后才执行，我希望立即执行函数，然后等到停止触发 n 秒后，才可以重新触发执行。
+            加个 immediate 参数判断是否立刻执行。
+        */
+        /* 第四版 */
+        var forthCount = 1;
+        var forthDom = document.getElementById('forth');
+        function getUserActionForth(e){
+            console.log("第四版的this：" + this);// this指向HTMLDOM对象
+            console.log("第四版的e：" + e);// e是 MouseEvent对象
+            forthDom.innerHTML = "防抖第四版：" + forthCount++;
+        }
+        function forthDebounce(func, wait, immediate){
+            var timeout;
+            return function(){
+                var context = this;
+                var args = arguments;
+                if(timeout) clearTimeout(timeout);
+                if(immediate){
+                    //如果已经执行过，不再执行
+                    var callNow = !timeout;
+                    timeout = setTimeout(function(){
+                        timeout = null;
+                    }, wait)
+                    if(callNow) func.apply(context, args);
+                }else{
+                    timeout = setTimeout(function(){
+                        func.apply(context, args);
+                    }, wait)
+                }
+            }
+        }
+        forthDom.onmousemove = forthDebounce(getUserActionForth, 1000, true);
+    </script>
+</body>
+</html>
