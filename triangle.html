@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css绘制三角形</title>
+    <style>
+        .container{
+            display: flex;
+        }
+        .triangle{
+            width: 0px;
+            height: 0px;
+        }
+        .triangleTop{
+            border-top: 10px solid red;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid transparent;
+        }
+        .triangleRight{
+            border-top: 10px solid transparent;
+            border-right: 10px solid red;
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid transparent;
+        }
+        .triangleBottom{
+            border-top: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid red;
+            border-left: 10px solid transparent;
+        }
+        .triangleLeft{
+            border-top: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="triangle triangleTop"></div>
+        <div class="triangle triangleRight"></div>
+        <div class="triangle triangleBottom"></div>
+        <div class="triangle triangleLeft"></div>
+    </div>
+</body>
+</html>
