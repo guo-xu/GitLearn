@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表单验证</title>
+    <style>
+        input:invalid{
+            background-color: red;
+        }
+        form:invalid{
+            border: 5px solid pink;
+        }
+        input:valid{
+            background-color: #ddffdd;
+        }
+        form:valid{
+            border: 5px solid #ddffdd;
+        }
+        input:required{
+            border-color: blue;
+            border-width: 3px;
+        }
+        input:required:invalid{
+            border-color: red;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <label for="name">名称：</label>
+        <input type="text" id="name" required>
+        <input type="submit" value="提交">
+    </form>
+    <button onclick="formPass()">checkValidity</button>
+    <button onclick="formReportValidity()">reportValidity</button>
+    <button onclick="formSetCustomValidity()">setCustomValidity</button>
+    <button onclick="consoleInfo()">consoleInfo</button>
+    <script>
+        /*
+            checkValidity()方法用来验证当前表单控件元素，或者整个表单是否验证通过
+            返回值是布尔值，true或false
+        */
+        function formPass(){
+            var isFormPass = document.forms[0].checkValidity();
+            alert("isFormPass: " + isFormPass);
+        }
+        /*
+            reportValidity()方法可以出发浏览器内置的验证提示交互
+            返回值是布尔值，true或false
+        */
+        function formReportValidity(){
+            document.forms[0].reportValidity()
+        }
+        /*
+            setCustomValidity(str)，设置自定义的验证提示文字
+        */
+        function formSetCustomValidity(){
+            var el = document.querySelector("#name");
+            el.setCustomValidity('请填写该字段_郭旭');
+            el.reportValidity();
+        }
+        /*
+            每一个标准的表单控件，例如输入框，下拉框等，都内置一个 validity 属性
+            这是个只读属性，可以返回当前元素各种验证状态
+        */
+        function consoleInfo(){
+            console.dir(document.querySelector("#name").validity);
+        }
+    </script>
+</body>
+</html>
