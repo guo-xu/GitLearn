@@ -6,5 +6,10 @@
     2.3 App.vue里加入路由显示区 <router-view />
 3、调整axios
     3.0 安装axios: npm i axios
-    3.1 
+4、使用element-ui
+    4.1 安装element-ui
+    4.2 在main.js中添加引用：
+        import Element from 'element-ui'
+        import 'element-ui/lib/theme-chalk/index.css'
+        Vue.use(Element);
 
