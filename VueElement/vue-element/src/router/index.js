@@ -2,7 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '@/pages/Login'
 import Home from '@/pages/Home'
-import Carousel from '@/pages/Carousel'
+import Carousel from '@/pages/test/Carousel'
+import Middle from '@/pages/test/Middle'
 
 Vue.use(VueRouter)
 
@@ -16,8 +17,12 @@ export default new VueRouter({
         name: 'Home',
         component: Home
     },{
-        path: '/carousel',
+        path: '/test/carousel',
         name: 'Carousel',
         component: Carousel
+    },{
+        path: '/test/middle',
+        name: 'Middle',
+        component: Middle
     }]
 })

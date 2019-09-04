@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>stickyMenu</title>
+<meta name="description" content="《CSS世界》官方网站，包含学习交流BBS论坛，书籍配套原型页面，书籍周边等信息" />
+<meta name="keywords" content="css, css世界" />
+<meta name="author" content="张鑫旭, zhangxinxu" />
+<link rel="stylesheet" type="text/css" href="./index.css">
+</head>
+
+<body class="pc">
+
+	<div class="buyDiv">
+		<span class="buy-btn trans" role="button">购买</span>
+		<!-- 购买的几个地址 -->
+		<a href="#" class="buy-address buy-address-1" target="_blank">京东<br>自营</a>
+		<a href="#" class="buy-address buy-address-2" target="_blank">人邮<br>官方</a>
+		<a href="#" class="buy-address buy-address-3" target="_blank">电子版</a>
+		<a href="#" class="buy-address buy-address-4" target="_blank">独家<br>签名版</a>
+		<a href="#" class="buy-address buy-address-5" target="_blank">当当<br>自营</a>
+		<a href="#" class="buy-address buy-address-6" target="_blank">亚马逊</a>
+	</div>
+
+	<svg class="svg-filters" width="0" height="0">
+		<defs>
+			<filter id="goo">
+				<feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+				<feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" />
+				<feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+			</filter>
+		</defs>
+	</svg>
+
+	<!--
+		<defs> ：svg允许我们定义以后需要重复使用的图形元素。建议把所有需要再次使用的引用元素定义在 defs 元素里面。
+		<filter>: filter元素作用是作为原子滤镜操作的容器。
+		下面三个是滤镜元素，不用深看。
+		<feGaussianBlur>: 滤镜元素。该滤镜对输入图像就行高斯模糊，属性stdDeviation定义模糊操作的标准差，一个数字表示x轴和y轴相同。
+		<feColorMatrix>: 滤镜元素。该滤镜基于转换矩阵对颜色进行变换。每一像素的颜色值(一个表示为[红,绿,蓝,透明度]的矢量)都经过矩阵算法计算出新颜色。
+		<feComposite>: 滤镜元素。
+	-->
+
+</body>
+</html>
